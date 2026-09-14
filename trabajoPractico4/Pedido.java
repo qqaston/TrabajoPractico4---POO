@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.ArrayList;
 /**
  * Clase que reperesenta una lista de pedidos
@@ -36,7 +37,7 @@ public class Pedido
         this.productos = new ArrayList<Producto>();
         this.setFecha(p_fecha);
         this.setCliente(p_cliente);
-        this.setProducto(p_producto);
+        this.agregarProducto(p_producto);
     }
     
     //accessors
@@ -55,15 +56,6 @@ public class Pedido
     
     public Cliente getCliente(){
         return this.cliente;
-    }
-    
-    private void setProducto(Producto p_productos){
-        this.productos.add(p_productos);
-    }
-    
-    public Producto getProducto(){
-        return this.productos.getLast();
-        
     }
     
     private void setProductos(ArrayList<Producto> p_productos){
@@ -107,15 +99,23 @@ public class Pedido
     }
     
     public boolean agregarProducto(Producto p_producto){
-        if(this.getProducto() != null){
-            this.setProducto(p_producto);
-            return true;
-        }else{
-            return false;
-        }
+        return this.getProductos().add(p_producto);
     }
     
-    private boolean quitarProducto(Producto p_producto){
-        this.getProductos().remove(p_producto);
+    public boolean quitarProducto(Producto p_producto){
+        return this.getProductos().remove(p_producto);
+        
+    }
+    
+    public void mostrarPedido(){
+        System.out.println("****** Detalle del pedido ******Fecha: " + this.getFecha().getInstance(fecha));
+        System.out.println("Producto   Precio Lista   Precio Contado");
+        System.out.println("-----------------------------------------");
+        for(int i = 0; i < this.getProductos().size(); i++){
+            System.out.println(this.getProductos().get(i).getDesc() + this.getProductos().get(i).precioLista() + this.getProductos().get(i).precioContado());
+        }
+        System.out.println("-----------------------------------------");
+        System.out.println("*** Total ---" + this.totalFinanciado() + "   " + this.totalAlContado() + "\n\n");
+        
     }
 }

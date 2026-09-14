@@ -11,6 +11,9 @@ public class ArrayDePuntos
         Scanner teclado = new Scanner(System.in);
         Punto puntos[] = new Punto[6];
         
+        /**
+         * Se crean 6 puntos con ingreso de coordenadas por teclado
+         */
         for (int i = 0; i < puntos.length;i++){
             System.out.println("OBJETO PUNTO NUMERO " + (i+1));
             System.out.println("Ingresa punto X");
@@ -20,6 +23,9 @@ public class ArrayDePuntos
             puntos[i] = new Punto(x,y);
         }
         
+        /**
+         * se imprime las coordenadas de los puntos y la distancia entre dos puntos cada dos
+         */
         for (int i = 0;i < puntos.length-1;i++){
             System.out.println(puntos[i].coordenadas());
             System.out.println(puntos[i+1].coordenadas());

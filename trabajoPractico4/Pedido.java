@@ -1,10 +1,10 @@
 import java.util.Calendar;
 import java.util.ArrayList;
 /**
- * Write a description of class Pedido here.
+ * Clase que reperesenta una lista de pedidos
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author GAUNA GASTON LEONEL - BARRIOS MARCOS
+ * @version 14/9/26
  */
 
 
@@ -76,5 +76,46 @@ public class Pedido
         return this.productos;
     }
     
+    /**
+     * Total al Contado será el resultado de calcular la suma del
+     * precio de contado de cada elemento de la lista.
+     * 
+     * @return total variable temporal de tipo double 
+     */
+    public double totalAlContado(){
+        double totalContado = 0;
+        for (int i = 0; i < this.getProductos().size(); i++){
+            totalContado = totalContado + this.getProductos().get(i).precioContado();
+        }
+        
+        return totalContado;
+    }
     
+    /**
+     * El total Financiado por su parte surge de la suma del precio de lista de cada
+     * elemento de la colección de productos solicitados.
+     * 
+     * @param totalFinanciado de tipo double 
+     */
+    public double totalFinanciado(){
+        double totalFinanciado = 0;
+        for (int i = 0; i < this.getProductos().size(); i++){
+            totalFinanciado = totalFinanciado + this.getProductos().get(i).precioLista();
+        }
+        
+        return totalFinanciado;
+    }
+    
+    public boolean agregarProducto(Producto p_producto){
+        if(this.getProducto() != null){
+            this.setProducto(p_producto);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    private boolean quitarProducto(Producto p_producto){
+        this.getProductos().remove(p_producto);
+    }
 }

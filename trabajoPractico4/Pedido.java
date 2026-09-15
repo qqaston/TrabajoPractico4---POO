@@ -98,24 +98,40 @@ public class Pedido
         return totalFinanciado;
     }
     
+    /**
+     * Metodo para agregar un producto al array
+     * @return boolean
+     */
     public boolean agregarProducto(Producto p_producto){
         return this.getProductos().add(p_producto);
     }
     
+    /**
+     * Metodo para quitar un producto del array
+     * @return boolean
+     */
     public boolean quitarProducto(Producto p_producto){
         return this.getProductos().remove(p_producto);
         
     }
     
+    /**
+     * Metodo para imprimir por pantalla los detalles del pedido
+     */
     public void mostrarPedido(){
-        System.out.println("****** Detalle del pedido ******Fecha: " + this.getFecha().getInstance(fecha));
-        System.out.println("Producto   Precio Lista   Precio Contado");
-        System.out.println("-----------------------------------------");
+        System.out.print("****** Detalle del pedido ******");
+        System.out.println("Fecha: " + this.getFecha().get(Calendar.DATE) + "/"
+                            + this.getFecha().get(Calendar.MONTH) + "/"
+                            + this.getFecha().get(Calendar.YEAR));
+        System.out.println("Producto        Precio Lista        Precio Contado");
+        System.out.println("--------------------------------------------------");
         for(int i = 0; i < this.getProductos().size(); i++){
-            System.out.println(this.getProductos().get(i).getDesc() + this.getProductos().get(i).precioLista() + this.getProductos().get(i).precioContado());
+            System.out.println(this.getProductos().get(i).getDesc() +
+            "        " + this.getProductos().get(i).precioLista() + 
+            "        " + this.getProductos().get(i).precioContado());
         }
-        System.out.println("-----------------------------------------");
-        System.out.println("*** Total ---" + this.totalFinanciado() + "   " + this.totalAlContado() + "\n\n");
+        System.out.println("--------------------------------------------------");
+        System.out.println("*** Total----" + this.totalFinanciado() + "   " + this.totalAlContado() + "\n\n");
         
     }
 }

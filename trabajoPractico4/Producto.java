@@ -54,12 +54,7 @@ public class Producto
         this.setStock(0);
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
+    //accossers
     private void setCodigo(int p_codigo){
         this.codigo = p_codigo;
     }

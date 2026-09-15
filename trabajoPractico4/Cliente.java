@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Cliente here.
+ * Clase que representa a un cliente con sus datos importantes
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author GAUNA GASTON LEONEL - BARRIOS MARCOS
+ * @version 14/9/26
  */
 public class Cliente
 {
@@ -13,69 +13,85 @@ public class Cliente
     private String nombre;
     private double saldo;
     
-    //metodo constructor
+    /**
+     * Metodo constructor
+     * 
+     * @param p_dni
+     * @param p_nombre
+     * @param p_apellido
+     * @param p_importe
+     */
     public Cliente(int p_dni, String p_nombre, String p_apellido, double p_importe){
-        setDNI(p_dni);
-        setNombre(p_nombre);
-        setApellido(p_apellido);
-        setImporte(p_importe);
+        this.setDNI(p_dni);
+        this.setNombre(p_nombre);
+        this.setApellido(p_apellido);
+        this.setImporte(p_importe);
     }
     
     //accossers
     private void setDNI(int p_dni){
-        nroDNI = p_dni;
+        this.nroDNI = p_dni;
     }
     
     public int getDNI(){
-        return nroDNI;
+        return this.nroDNI;
     }
     
     public void setNombre(String p_nombre){
-        nombre = p_nombre;
+        this.nombre = p_nombre;
     }
     
     private String getNombre(){
-        return nombre;
+        return this.nombre;
     }
     
     public void setApellido(String p_apellido){
-        apellido = p_apellido;
+        this.apellido = p_apellido;
     }
     
     private String getApellido(){
-        return apellido;    
+        return this.apellido;    
     }
     
     public void setImporte(double p_importe){
-        saldo = p_importe;
+        this.saldo = p_importe;
     }
     
     private double getImporte(){
-        return saldo;
+        return this.saldo;
     }
     
     public double nuevoSaldo(double p_importe){
         saldo = p_importe;
-        return saldo;
+        return this.saldo;
     }
     
     public double agregaSaldo(double p_importe){
-        setImporte(getImporte() + p_importe);
-        return saldo;
+        this.setImporte(this.getImporte() + p_importe);
+        return this.saldo;
     }
     
+    /**
+     * @return un String del nombre y apellido concatenados
+     */
     public String nomYApe(){
-        return nombre + " " + apellido;
+        return this.getNombre() + " " + this.getApellido();
     }
     
+    /**
+     * @return un String del apellido y nombre concatenados
+     */
     public String apeYNom(){
-        return apellido + " " + nombre;
+        return this.getApellido() + " " + this.getNombre();
     }
     
+    /**
+     * Imprime por pantalla los datos del cliente
+     */
     public void mostrar(){
         System.out.println(" - CLIENTE - ");
-        System.out.println("Nombre y Apellido: " + apeYNom() + "(" + getDNI() + ")");
-        System.out.println("Saldo: " + getImporte());
+        System.out.println("Nombre y Apellido: " + this.apeYNom() + "(" + this.getDNI() + ")");
+        System.out.println("Saldo: " + this.getImporte());
     }
 
 }

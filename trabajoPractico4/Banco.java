@@ -99,29 +99,31 @@ public class Banco
      */
     public void listarSueldos(){
         for(int i = 0;i < this.getEmpleados().size(); i++){
-            System.out.print(this.getEmpleados().get(i).getCuil() + "   " + this.getEmpleados().get(i).apeYNom());
-            System.out.print("_____________________________________");
-            System.out.print(this.getEmpleados().get(i).getSueldoBasico());
+            Empleado empleadoAux = this.getEmpleados().get(i); //empleado auxiliar 
+            System.out.print("\n" + empleadoAux.getCuil() + "   " + empleadoAux.apeYNom() + "__________" + empleadoAux.sueldoNeto() + "\n");
         }
     }
     
     /**
-     * @param el total a pagar de la suma de todos sueldos de los empleados 
+     * @return el total a pagar de la suma de todos sueldos de los empleados 
      */
     public double sueldosAPagar(){
         double total = 0;
         
         for(int i = 0; i < this.getEmpleados().size(); i++){
-            total += this.getEmpleados().get(i).getSueldoBasico();
+            total += this.getEmpleados().get(i).sueldoNeto();
         }
         
         return total;
     }
     
+    /**
+     * Metodo que imprime los detalles para el total a pagar del banco
+     */
     public void mostrar(){
         System.out.println("BANCO: " + this.getNombre() + "   " + this.getNroSucursal());
         System.out.println("Localidad: " + this.getLocalidad().getNombre() + "   " + this.getLocalidad().getProvincia());
         this.listarSueldos();
-        System.out.println("Total a Pagar________________________________$" + this.sueldosAPagar());
+        System.out.println("Total a Pagar__________$" + this.sueldosAPagar());
     }
 }

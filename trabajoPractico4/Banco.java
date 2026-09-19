@@ -24,6 +24,7 @@ public class Banco
      */
     public Banco(String p_nombre, Localidad p_localidad, int p_nroSucursal, Empleado p_empleado){
         this.empleados = new ArrayList<Empleado>();// se inicializa el array vacio
+        this.cuentasBancarias = new ArrayList<CuentaBancaria>();
         
         this.setNombre(p_nombre);
         this.setLocalidad(p_localidad);
@@ -41,6 +42,7 @@ public class Banco
      */
     public Banco(String p_nombre, Localidad p_localidad, int p_nroSucursal, ArrayList<Empleado> p_empleados){
         this.empleados = new ArrayList<Empleado>(); //se inicializa el array vacio 
+        this.cuentasBancarias = new ArrayList<CuentaBancaria>();
         
         this.setNombre(p_nombre);
         this.setLocalidad(p_localidad);
@@ -173,24 +175,28 @@ public class Banco
      * solo debe aparecer una vez en el listado). También puede listar las cuentas cuyo saldo sea cero. Además, debe conocer
      * cuántas cuentas están activas (una cuenta activa es aquella cuyo saldo sea mayor a 0).
      */
-    
+    /**
+     * Este metodo recorre las lista de las cuentas sin saldo y las imprime en pantalla
+     */
     public void listarCuentasConSaldoCero(){
+        System.out.println("_____________________________________________");
         System.out.println("Cuentas sin Saldo:");
         System.out.println("---CUENTA-------------APELLIDO Y NOMBRE------");
-        for(CuentaBancaria cuentaAct : this.getCuentas()){
-    
-            if(cuentaAct.getSaldo() <= 0){
-                System.out.println(cuentaAct.getNroCuenta() + "__________" + cuentaAct.getTitular().apeYNom());
+        for(int i = 0; i < this.getCuentas().size(); i++){
+            CuentaBancaria cuentaAux = this.getCuentas().get(i);
+            if(cuentaAux.getSaldo() <= 0){
+                System.out.println(cuentaAux.getNroCuenta() + "__________" + cuentaAux.getTitular().apeYNom());
             }
         }
         System.out.println("_____________________________________________");
         System.out.print("Listado de Clientes: ");
-        for(CuentaBancaria cuentaAct: this.getCuentas()){
-            if(cuentaAct.getSaldo() <= 0){
-                System.out.print("; " + cuentaAct.getTitular().apeYNom());
+        for(int i = 0; i < this.getCuentas().size(); i++){
+            CuentaBancaria cuentaAux = this.getCuentas().get(i);
+            if(cuentaAux.getSaldo() <= 0){
+                System.out.print("; " + cuentaAux.getTitular().apeYNom());
             }
         }
-        System.out.println("_____________________________________________");
+        System.out.println("\n_____________________________________________");
     }
     
     /*
@@ -198,15 +204,16 @@ public class Banco
      * solo debe aparecer una vez en el listado)
      */
     
+    /**
+     * @return un HashSet con los titulares de cuentas 
+     */
     public HashSet<Persona> listaDeTitulares(){
-        HashSet<Persona> titulares = new HashSet<Persona>();
+        HashSet<Persona> titularesAux = new HashSet<Persona>();
         for(int i = 0; i < this.getCuentas().size(); i++){
             CuentaBancaria cuentaAux = this.getCuentas().get(i);
-            if(){
-                titulares.add(cuentaAux.getTitular());
-            }
+            titularesAux.add(cuentaAux.getTitular());
         }
-        return titulares;
+        return titularesAux;
     }
     
     /**
@@ -215,12 +222,48 @@ public class Banco
     private int cuentasSaldoActivo(){
         int contador = 0;
         
-        for(CuentaBancaria cuentaAct: this.getCuentas()){
-            if(cuentaAct.getSaldo() > 0){
+        for(int i = 0; i < this.getCuentas().size(); i++){
+            CuentaBancaria cuentaAux = this.getCuentas().get(i);
+            if(cuentaAux.getSaldo() > 0){
                 contador++;
             }
         }
         
         return contador;
+    }
+    
+    private int cuentasSaldoCero(){
+        int contador = 0;
+        for(int i = 0; i < this.getCuentas().size(); i++){
+            CuentaBancaria cuentaAux = this.getCuentas().get(i);
+            if(cuentaAux.getSaldo() == 0){
+                contador++;
+            }
+        }
+        return contador;
+    }
+    
+    /**
+     * @return un int con el total de cuentas bancarias 
+     */
+    private int totalCuentasBancarias(){
+        int contador = 0;
+        for(int i = 0; i < this.getCuentas().size(); i++){
+                contador++;
+        }
+        return contador;
+    }
+    
+    public void mostrarResumen(){
+        System.out.println("BANCO: " + this.getNombre() + "   " + this.getNroSucursal());
+        System.out.println("Localidad: " + this.getLocalidad().getNombre() + "   " + this.getLocalidad().getProvincia());
+        System.out.println("****************************************************");
+        System.out.println("RESUMEN DE CUENTAS BANCARIAS");
+        System.out.println("****************************************************");
+        
+        System.out.println("Numeros total de Cuentas Bancarias: " + this.totalCuentasBancarias());
+        System.out.println("Cuentas Activas: " + this.cuentasSaldoActivo());
+        System.out.println("Cuentas Saldo Cero: " + this.cuentasSaldoCero());
+        this.listarCuentasConSaldoCero();
     }
 }

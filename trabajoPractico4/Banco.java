@@ -232,6 +232,9 @@ public class Banco
         return contador;
     }
     
+    /**
+     * @return un int con la cantidad de cuentas de saldo 0
+     */
     private int cuentasSaldoCero(){
         int contador = 0;
         for(int i = 0; i < this.getCuentas().size(); i++){
@@ -254,6 +257,9 @@ public class Banco
         return contador;
     }
     
+    /**
+     * Este motodo muestra el resumen y detealles del banco
+     */
     public void mostrarResumen(){
         System.out.println("BANCO: " + this.getNombre() + "   " + this.getNroSucursal());
         System.out.println("Localidad: " + this.getLocalidad().getNombre() + "   " + this.getLocalidad().getProvincia());
